@@ -27,7 +27,7 @@ spec:
 {{ toYaml .Values.resources | indent 10 }}
 
         ports:
-        - name: spaceengineers-udp-1
+        - name: se-udp-1
           containerPort: 27016
           protocol: UDP
         volumeMounts:
