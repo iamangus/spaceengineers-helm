@@ -18,6 +18,7 @@ spec:
       labels:
         app: {{ template "spaceengineers.fullname" . }}
         release: "{{ .Release.Name }}"
+    spec:
       containers:
       - name: {{ template "spaceengineers.fullname" . }}
         image: "{{ .Values.image }}:{{ .Values.imageTag }}"
