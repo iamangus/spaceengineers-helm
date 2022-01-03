@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "spaceengineers.fullname" . }}
+  labels:
+    app: {{ template "spaceengineers.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "spaceengineers.fullname" . }}
+      release: "{{ .Release.Name }}"
+  template:
+    metadata:
+      labels:
+        app: {{ template "spaceengineers.fullname" . }}
+        release: "{{ .Release.Name }}"
+      containers:
+      - name: {{ template "spaceengineers.fullname" . }}
+        image: "{{ .Values.image }}:{{ .Values.imageTag }}"
+        imagePullPolicy: Always
+        resources:
+{{ toYaml .Values.resources | indent 10 }}
+
+        ports:
+        - name: spaceengineers-udp-1
+          containerPort: 27016
+          protocol: UDP
+        volumeMounts:
+        - name: config
+          mountPath: /appdata/space-engineers
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+{{- if eq .Values.persistence.claimName "" }}
+          claimName: {{ template "spaceengineers.fullname" . }}-config
+{{- else }}
+          claimName: {{ .Values.persistence.claimName }}
+{{- end }}
