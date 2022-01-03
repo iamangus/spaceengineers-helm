@@ -13,14 +13,14 @@ spec:
   type: {{ .Values.spaceengineersServer.serviceType }}
   ports:
   {{- if eq "LoadBalancer" .Values.spaceengineersServer.serviceType }}
-  - name: spaceengineers-udp-1
+  - name: se-udp-1
     port: 27016
-    targetPort: spaceengineers-udp-1
+    targetPort: se-udp-1
     protocol: UDP
   {{- else }}
-  - name: spaceengineers-1
+  - name: se-1
     port: {{ .Values.spaceengineersServer.serverPort | int }}
-    targetPort: spaceengineers-1
+    targetPort: se-1
     nodePort: {{ .Values.spaceengineersServer.serverPort | int }}
     protocol: UDP
   {{- end }}
