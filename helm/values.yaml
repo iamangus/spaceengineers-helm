@@ -11,10 +11,15 @@ resources:
   requests:
     memory: 1024Mi
     cpu: 1000m
+    
+spaceengineersServer:
+  serverName: Space Engineers Kubernetes Server
+  serverPort: 27016
+  serviceType: LoadBalancer
 
 persistence:
   config:
     enabled: true
-    size: 1Gi
+    size: 2Gi
     # storageClassName: -
   claimName: "" # provide a value to prevent PVC creation
