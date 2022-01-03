@@ -1,0 +1,12 @@
+apiVersion: v2
+name: spaceengineers
+version: "0.99"
+appVersion: 1.199
+description: Space Engineers dedicated server
+keywords:
+- game
+- server
+home: https://www.spaceengineersgame.com/
+icon: https://e7.pngegg.com/pngimages/538/487/png-clipart-space-engineers-mechanical-engineering-cover-letter-engineer-angle-rectangle.png
+sources:
+- https://github.com/mmmaxwwwell/space-engineers-dedicated-docker-linux
